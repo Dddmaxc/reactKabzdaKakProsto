@@ -1,26 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Accordion } from "./components/Accordion/Accordion";
+import "./App.css";
+import { Rating } from "./components/Rating/Rating";
+import { RatingGPT } from "./RatingGPT";
+import { OnOff } from "./components/OnOff/OnOff";
+import { UnControlledAccordion } from "./components/UnControlledAccordion/UnControlledAccordion";
 
 function App() {
+  
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PageTitle title="This is APP component" />
+      <PageTitle title="My friends" />
+      Article 1
+      <UnControlledAccordion title="Toggle"/>
+      Article 2
+      <Rating title="Star"/>
+      <RatingGPT title="RatingGPT" />
+      <OnOff />
     </div>
   );
+}
+
+type PropsTypePageTitle = {
+  title: string;
+};
+
+export function PageTitle(props: PropsTypePageTitle) {
+  return <h1>{props.title}</h1>;
 }
 
 export default App;
