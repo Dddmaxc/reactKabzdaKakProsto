@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/reactKabzdaKakProsto/static/css/main.31e28e67.css",
+    "main.js": "/reactKabzdaKakProsto/static/js/main.4f2327ee.js",
+    "static/js/453.ed3810f9.chunk.js": "/reactKabzdaKakProsto/static/js/453.ed3810f9.chunk.js",
+    "index.html": "/reactKabzdaKakProsto/index.html",
+    "main.31e28e67.css.map": "/reactKabzdaKakProsto/static/css/main.31e28e67.css.map",
+    "main.4f2327ee.js.map": "/reactKabzdaKakProsto/static/js/main.4f2327ee.js.map",
+    "453.ed3810f9.chunk.js.map": "/reactKabzdaKakProsto/static/js/453.ed3810f9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.31e28e67.css",
+    "static/js/main.4f2327ee.js"
+  ]
+}
