@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessagePropsType } from "./Input";
+import { MessagePropsType } from "./InputUniversal";
 
 export type FullButtonPropsType = {
   addMessage: (message: string) => void;
@@ -13,7 +13,7 @@ export function FullButton(props: FullButtonPropsType) {
     setInputValue(event.currentTarget.value);
   };
 
-   const onClickHandler = () => {
+  const onClickHandler = () => {
     props.addMessage(inputValue.trim());
     setInputValue("");
   };

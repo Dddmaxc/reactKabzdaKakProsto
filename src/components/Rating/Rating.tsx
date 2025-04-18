@@ -31,7 +31,7 @@ type StarPropsType = {
   onClick: () => void;
 };
 
-function Star(props: StarPropsType) {
+export function Star(props: StarPropsType) {
   return (
     <span onClick={props.onClick} style={{ cursor: "pointer", fontSize: "24px" }}>
       {props.selected ? <b>★</b> : "☆"}

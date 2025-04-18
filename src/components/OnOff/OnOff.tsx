@@ -1,7 +1,10 @@
 import { useState } from "react";
-import s from "./OnOff.module.css";
 
-export function OnOff() {
+type PropsType = {
+  title: string
+}
+
+export function OnOff({title}:PropsType) {
   let [sw, setSw] = useState<boolean>(true);
   const switchButton = () => {
     setSw(!sw);
@@ -10,22 +13,19 @@ export function OnOff() {
   return (
     <div style={{ display: "flex", gap: 5, cursor: "pointer" }}>
       <div
-        className={sw ? s.green : s.null}
         onClick={switchButton}
-        style={{ border: "1px solid green", width: 30 }}
+        style={{ border: "1px solid green", width: 30,  backgroundColor: sw ? "green" : "" }}
       >
         On
       </div>
       <div
-        className={sw ? s.null : s.red}
         onClick={switchButton}
-        style={{ border: "1px solid red", width: 30 }}
+        style={{ border: "1px solid red", width: 30,  backgroundColor: sw ? "" : "red" }}
       >
         Off
       </div>
       <div
-        className={sw ? s.green : s.red}
-        style={{ borderRadius: 50, border: "1px solid black", width: 30 }}
+        style={{ borderRadius: 50, border: "1px solid black", width: 30, backgroundColor: sw ? "green" : "red"  }}
       ></div>
     </div>
   );

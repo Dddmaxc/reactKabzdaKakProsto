@@ -1,0 +1,10 @@
+{
+  "cSpell.ignoreRegExpList": [""],
+  "workbench.settings.useSplitJSON": false,
+  "json.schemas": [],
+  "files.associations": {
+    "*.stories.tsx": "typescriptreact"
+  },
+  "workbench.colorTheme": "GitHub Dark",
+  "workbench.preferredDarkColorTheme": "Default High Contrast"
+}
