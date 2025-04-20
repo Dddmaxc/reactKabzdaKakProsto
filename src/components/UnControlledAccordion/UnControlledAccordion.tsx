@@ -4,40 +4,49 @@ type PropsTypeUnControlledAccordion = {
   title: string;
 };
 
-export function UnControlledAccordion(props: { title: string }) {
-  let [collapsed, setCollapsed] = useState<boolean>(false);
+export function UnControlledAccordion(props: PropsTypeUnControlledAccordion) {
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
-  let collapsedToggleButton = () => {
+  const collapsedToggleButton = () => {
     setCollapsed(!collapsed);
   };
 
+  const items = ["HTML", "CSS", "JS"]; // пример массива
+
   return (
     <div>
-      <AccordionTitle />
-      <h2 style={{cursor: "pointer", display: "inline-block"}} onClick={collapsedToggleButton}>{props.title}</h2>
-      {collapsed &&  <AccordionBody />}
-      
+      <AccordionTitle title={props.title} onClick={collapsedToggleButton} />
+      {collapsed && <AccordionBody items={items} />}
     </div>
   );
 }
 
-export function AccordionBody() {
+type AccordionTitleProps = {
+  title: string;
+  onClick: () => void;
+};
+
+function AccordionTitle({ title, onClick }: AccordionTitleProps) {
   return (
-    <>
-      <ul>
-        {[1, 2, 3].map((i) => (
-          <li key={i}>{i}</li>
-        ))}
-      </ul>
-    </>
+    <h3
+      onClick={onClick}
+      style={{ cursor: "pointer", display: "inline-block" }}
+    >
+      {title}
+    </h3>
   );
 }
 
-function AccordionTitle() {
-  console.log("AccordionTitle");
+type AccordionBodyType = {
+  items: string[];
+};
+
+function AccordionBody({ items }: AccordionBodyType) {
   return (
-    <>
-      <h3>{}</h3>
-    </>
+    <ul>
+      {items.map((i, index) => (
+        <li key={index}>{i}</li>
+      ))}
+    </ul>
   );
 }
