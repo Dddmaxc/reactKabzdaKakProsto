@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 
 import { InputUniversal } from "./InputUniversal";
 import { ChangeEvent, useState } from "react";

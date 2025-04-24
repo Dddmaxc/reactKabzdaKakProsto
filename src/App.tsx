@@ -3,6 +3,7 @@ import { Rating } from "./components/Rating/Rating";
 import { RatingGPT } from "./RatingGPT";
 import { OnOff } from "./components/OnOff/OnOff";
 import { UnControlledAccordion } from "./components/UnControlledAccordion/UnControlledAccordion";
+import { Select } from "./components/Select/Select";
 
 function App() {
   return (
