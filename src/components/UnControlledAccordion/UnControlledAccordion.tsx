@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useReducer } from "react";
+import { reducer } from "./Redece";
 
 type PropsTypeUnControlledAccordion = {
   title: string;
 };
 
+const TOGGLE_COLLAPSED = "TOGGLE-COLLAPSED";
+
+
+
+
+
 export function UnControlledAccordion(props: PropsTypeUnControlledAccordion) {
-  const [collapsed, setCollapsed] = useState<boolean>(false);
+  const [state, dispatch] = useReducer(reducer, {collapsed: false});
 
   const collapsedToggleButton = () => {
-    setCollapsed(!collapsed);
+    dispatch({ type: TOGGLE_COLLAPSED });
   };
 
   const items = ["HTML", "CSS", "JS"]; // пример массива
@@ -16,7 +23,7 @@ export function UnControlledAccordion(props: PropsTypeUnControlledAccordion) {
   return (
     <div>
       <AccordionTitle title={props.title} onClick={collapsedToggleButton} />
-      {collapsed && <AccordionBody items={items} />}
+      {! state.collapsed && <AccordionBody items={items} />}
     </div>
   );
 }
