@@ -119,4 +119,16 @@ export const LikeUseCallback = () => {
   );
 };
 
+type R = {
+  books: Array<string>
+}
 
+const BooksSecret = ({books}:R) =>{
+  console.log("BooksSecret")
+return <>
+   {books.map((book, i) => <div key={i}>{book}</div>)}
+</>
+
+}
+
+const Books = React.memo(BooksSecret)
