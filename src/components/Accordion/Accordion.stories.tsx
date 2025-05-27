@@ -1,7 +1,9 @@
 import { action } from "@storybook/addon-actions";
 
 import { Accordion } from "./Accordion";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import React from "react";
+
 
 export default {
   component: Accordion,
@@ -21,7 +23,7 @@ export const collapsedAccordion = () => {
   );
 };
 
-export const OpenAccordion = () => {
+export const OpenA = () => {
   return (
     <div>
       <Accordion title="openAccordion" collapsed={false} />
@@ -29,14 +31,17 @@ export const OpenAccordion = () => {
   );
 };
 
+const OpenAccordion = React.memo(OpenA) 
+
 export const AccordionSimple = () => {
   const [collapsed, setCollapsed] = useState<boolean>(true);
-  const collapsedFunction = () => {
-    setCollapsed(!collapsed);
-  };
+
+  const toggleCollapse  = useCallback(() => {
+    setCollapsed(prew => !prew);
+  }, [])
   return (
     <div>
-      <Accordion title="AccordionSimple" onChange={collapsedFunction} />
+      <Accordion title="AccordionSimple" collapsed={collapsed} onChange={toggleCollapse } />
     </div>
   );
 };

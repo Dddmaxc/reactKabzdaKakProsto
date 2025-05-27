@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { FullButton } from "./FullButton";
 
 export type MessagePropsType = {
@@ -12,9 +12,9 @@ export function InputUniversal() {
     { message: "message3" },
   ]);
 
-  const addMessage = (newMessage: string) => {
-    setMessage([{ message: newMessage }, ...message]);
-  };
+  const addMessage = useCallback( (newMessage: string) => {
+    setMessage((prevMessage) => [{message: newMessage}, ...prevMessage]);
+  }, [message])
 
   return (
     <div>

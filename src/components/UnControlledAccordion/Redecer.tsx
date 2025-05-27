@@ -8,7 +8,7 @@ export type StateType = {
   collapsed: boolean;
 };
 
-export let reducer = (state: StateType, action: ActionType): StateType => {
+export let Reducer = (state: StateType, action: ActionType): StateType => {
   switch (action.type) {
     case TOGGLE_COLLAPSED:
       return { ...state, collapsed: !state.collapsed };

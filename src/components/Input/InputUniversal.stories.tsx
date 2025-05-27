@@ -1,45 +1,59 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { ChangeEvent, useCallback, useState } from "react";
 
 import { InputUniversal } from "./InputUniversal";
-import { ChangeEvent, useState } from "react";
 
 const meta: Meta<typeof InputUniversal> = {
+  title: "Components/InputUniversal",
   component: InputUniversal,
 };
 
 export default meta;
 type Story = StoryObj<typeof InputUniversal>;
 
+// Простая история с передачей пропсов
 export const SuperInput: Story = {
   args: {
-    title: "SuperInput ",
+    title: "SuperInput",
   },
 };
 
+// Контролируемый инпут
 export const ControlledInput = () => {
-  const [parentValue, setParentValue] = useState<string>("");
-  const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setParentValue(e.currentTarget.value);
+  const [value, setValue] = useState("");
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setValue(e.currentTarget.value),
+    []
+  );
 
-  return <input value={parentValue} onChange={onChange} />;
+  return <input value={value} onChange={handleChange} />;
 };
+
+// Контролируемый чекбокс
 export const ControlledCheckbox = () => {
-  const [parentValue, setParentValue] = useState<boolean>(true);
-  const onChange = (e: ChangeEvent<HTMLInputElement>) =>
-    setParentValue(e.currentTarget.checked);
-  return <input type="checkbox" checked={parentValue} onChange={onChange} />;
+  const [checked, setChecked] = useState(true);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => setChecked(e.currentTarget.checked),
+    []
+  );
+
+  return <input type="checkbox" checked={checked} onChange={handleChange} />;
 };
 
+// Контролируемый select
 export const ControlledSelect = () => {
-  const [parentValue, setParentValue] = useState<string | undefined>(undefined);
-  const onChange = (e: ChangeEvent<HTMLSelectElement>) =>
-    setParentValue(e.currentTarget.value);
+  const [selected, setSelected] = useState<string | undefined>(undefined);
+  const handleChange = useCallback(
+    (e: ChangeEvent<HTMLSelectElement>) => setSelected(e.currentTarget.value),
+    []
+  );
+
   return (
-    <select value={parentValue} onChange={onChange}>
-      <option>none</option>
-      <option value={"1"}>Kiev</option>
-      <option value={"2"}>Amsterdam</option>
-      <option value={"3"}>Warsaw</option>
+    <select value={selected} onChange={handleChange}>
+      <option value="">none</option>
+      <option value="1">Kiev</option>
+      <option value="2">Amsterdam</option>
+      <option value="3">Warsaw</option>
     </select>
   );
 };

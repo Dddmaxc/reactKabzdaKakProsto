@@ -1,32 +1,49 @@
-import { useState } from "react";
+import React from "react";
+import { useCallback, useState } from "react";
 
 type PropsType = {
-  title: string
-}
+  title?: string;
+};
 
-export function OnOff({title}:PropsType) {
+export const OnOff = React.memo(({ title }: PropsType) => {
   let [sw, setSw] = useState<boolean>(true);
-  const switchButton = () => {
-    setSw(!sw);
-  };
+
+  const turnOn = useCallback(() => setSw(true), [])
+  const turnOff = useCallback(() => setSw(false), [])
 
   return (
     <div style={{ display: "flex", gap: 5, cursor: "pointer" }}>
       <div
-        onClick={switchButton}
-        style={{ border: "1px solid green", width: 30,  backgroundColor: sw ? "green" : "" }}
+        onClick={turnOn}
+        style={{
+          border: "1px solid green",
+          width: 30,
+          textAlign: "center",
+          backgroundColor: sw ? "green" : "",
+        }}
       >
         On
       </div>
       <div
-        onClick={switchButton}
-        style={{ border: "1px solid red", width: 30,  backgroundColor: sw ? "" : "red" }}
+        onClick={turnOff}
+        style={{
+          border: "1px solid red",
+          width: 30,
+          textAlign: "center",
+          backgroundColor: sw ? "" : "red",
+        }}
       >
         Off
       </div>
       <div
-        style={{ borderRadius: 50, border: "1px solid black", width: 30, backgroundColor: sw ? "green" : "red"  }}
+        style={{
+          borderRadius: 50,
+          border: "1px solid black",
+          width: 30,
+          backgroundColor: sw ? "green" : "red",
+        }}
       ></div>
+      {title && <span>{title}</span>}
     </div>
   );
-}
+})

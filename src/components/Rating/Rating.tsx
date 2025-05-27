@@ -1,30 +1,30 @@
+import React from "react";
 import { useState } from "react";
 
 export type RatingPropsType = {
   title: string;
 };
 
-export function Rating(props: RatingPropsType) {
-  const [selectedStar, setSelectedStar] = useState(-1);
+export const Rating = React.memo((props: RatingPropsType) => {
+  const [selectedStar, setSelectedStar] = useState<number | null>(null);
   const stars = [1, 2, 3, 4, 5];
 
   return (
     <div>
       <h3>{props.title}</h3>
       {stars.map((_, index) => {
-        const handleClick = () => setSelectedStar(index);
 
         return (
-          <Star
+          <MemoStar
             key={index}
-            selected={index <= selectedStar}
-            onClick={handleClick}
+            selected={index <= (selectedStar ?? -1)}
+            onClick={() => setSelectedStar(index)}
           />
         );
       })}
     </div>
   );
-}
+});
 
 type StarPropsType = {
   selected: boolean;
@@ -33,9 +33,13 @@ type StarPropsType = {
 
 export function Star(props: StarPropsType) {
   return (
-    <span onClick={props.onClick} style={{ cursor: "pointer", fontSize: "24px" }}>
+    <span
+      onClick={props.onClick}
+      style={{ cursor: "pointer", fontSize: "24px" }}
+    >
       {props.selected ? <b>★</b> : "☆"}
     </span>
   );
 }
 
+const MemoStar = React.memo(Star);

@@ -1,32 +1,28 @@
-import { useReducer } from "react";
-import { reducer } from "./Redece";
+import React, { useCallback, useReducer } from "react";
+import { Reducer, TOGGLE_COLLAPSED } from "./Redecer";
 
 type PropsTypeUnControlledAccordion = {
   title: string;
 };
 
-const TOGGLE_COLLAPSED = "TOGGLE-COLLAPSED";
 
 
+export const UnControlledAccordion = React.memo((props: PropsTypeUnControlledAccordion) => {
+  const [state, dispatch] = useReducer(Reducer, { collapsed: false });
 
-
-
-export function UnControlledAccordion(props: PropsTypeUnControlledAccordion) {
-  const [state, dispatch] = useReducer(reducer, {collapsed: false});
-
-  const collapsedToggleButton = () => {
+  const collapsedToggleButton = useCallback(() => {
     dispatch({ type: TOGGLE_COLLAPSED });
-  };
+  }, [dispatch])
 
   const items = ["HTML", "CSS", "JS"]; // пример массива
 
   return (
     <div>
-      <AccordionTitle title={props.title} onClick={collapsedToggleButton} />
-      {! state.collapsed && <AccordionBody items={items} />}
+      <AccordionTitleMemo title={props.title} onClick={collapsedToggleButton} />
+      {!state.collapsed && <AccordionBodyMemo items={items} />}
     </div>
   );
-}
+})
 
 type AccordionTitleProps = {
   title: string;
@@ -44,6 +40,8 @@ function AccordionTitle({ title, onClick }: AccordionTitleProps) {
   );
 }
 
+const AccordionTitleMemo = React.memo(AccordionTitle)
+
 type AccordionBodyType = {
   items: string[];
 };
@@ -57,3 +55,6 @@ function AccordionBody({ items }: AccordionBodyType) {
     </ul>
   );
 }
+
+const AccordionBodyMemo = React.memo(AccordionBody)
+
